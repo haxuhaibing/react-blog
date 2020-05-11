@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from '../../utils/axios';
-import {Link} from 'react-router-dom';
 import {Pagination} from 'antd';
-import './home.scss'
+import {Link} from "react-router-dom";
+import './index.scss'
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +13,7 @@ class Home extends React.Component {
   }
 
   ArticleList() {
+    console.log(this)
     axios.post('http://api.xuhaibing.io/v1/article/list').then(response => {
       this.setState({list: response});
     })
@@ -30,7 +31,9 @@ class Home extends React.Component {
           this.state.list.map(row => {
             return (<div className="article-list-item" key={row.id}>
 
-              <h2><Link to="/detail">{row.title}</Link></h2>
+              <h2>
+                <Link to={'detail/' + row.href}>{row.title}</Link>
+              </h2>
               <div className="desc" dangerouslySetInnerHTML={{
                   __html: row.contents
                 }}></div>
@@ -38,11 +41,11 @@ class Home extends React.Component {
                 <div className="tags">
                   <span>{row.tags}</span>
                 </div>
-                <div className="date">{row.time}}</div>
+                <div className="date">{row.time}</div>
               </div>
-            </div>
-            )
-        }) }
+            </div>)
+          })
+        }
       </div>
       <Pagination defaultCurrent={1} total={50}/>
     </div>);

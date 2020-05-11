@@ -6,6 +6,8 @@
   left: 0;
   width: 100%;
   z-index: 999;
+  height: 55px;
+  overflow: hidden;
 
   .container {
     display: -webkit-flex;

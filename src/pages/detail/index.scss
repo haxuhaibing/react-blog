@@ -1,0 +1,40 @@
+.container {
+  padding: 0 16px;
+}
+.detail-content {
+  margin-top: 16px;
+}
+.post-comment {
+  margin-top: 16px;
+}
+.post-comment-form {
+  textarea {
+    width: 100%;
+    height: 160px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 8px;
+  }
+  .form-group {
+    margin-top: 16px;
+  }
+}
+
+.detail-propety-publish {
+  color: #6c757d;
+  font-size: 12px;
+
+  span {
+    margin-right: 8px;
+  }
+}
+
+.detail-tags {
+  .ant-tag {
+    margin-right: 0;
+  }
+}
+.detail-desc {
+  margin-top: 16px;
+  background-color: #f8f8f8
+}
