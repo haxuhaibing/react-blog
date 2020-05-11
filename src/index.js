@@ -1,12 +1,17 @@
 import React from 'react';
+import { ConfigProvider, DatePicker, message } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
+import Home from './pages/home/home'
+import Header from './components/Header/index'
+import * as serviceWorker from './serviceWorker';
+import 'antd/dist/antd.css';
+import './assets/scss/common.scss';
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+  <Header/>
+  <Home/>
   </React.StrictMode>,
   document.getElementById('root')
 );
