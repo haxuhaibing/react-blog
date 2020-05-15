@@ -1,0 +1,30 @@
+.hot-article {
+  margin-top: 16px;
+}
+
+.hot-article-list {
+  background: #fff;
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  li {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+
+    a {
+      display: block;
+      color: #333;
+      line-height: 20px;
+      height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      background: rgba(245, 245, 245, 0.6);
+    }
+  }
+}

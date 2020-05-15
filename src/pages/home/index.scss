@@ -1,26 +1,30 @@
- 
 .index-content {
   padding: 0 16px;
 }
+
 .article-list {
   margin-top: 16px;
-  padding-top: 0;
+  padding: 0 16px;
+  background-color: #fff;
 }
 
 .article-list-item {
   padding: 16px 0;
   border-bottom: 1px solid #f4f4f4;
-  .title {
+
+  h2 {
     font-size: 1.2rem;
     line-height: 1;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
+
     a {
       color: #333;
     }
   }
+
   .tags-date {
     display: -webkit-flex;
     display: -ms-flex;
@@ -28,6 +32,7 @@
     align-items: center;
     justify-content: space-between;
   }
+
   .tags span {
     display: inline-block;
     white-space: nowrap;
@@ -37,10 +42,12 @@
     font-size: 13px;
     color: #3d3d3d;
   }
+
   &:last-child {
     padding-bottom: 0;
     border-bottom: none;
   }
+
   .desc {
     background: #f8f8f8;
   }

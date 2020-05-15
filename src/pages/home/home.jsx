@@ -1,8 +1,10 @@
-import React from 'react';
-import axios from '../../utils/axios';
-import {Pagination} from 'antd';
+import React, {useState} from 'react';
+import {post} from '../../utils/axios';
+import {Pagination, Row, Col} from 'antd';
 import {Link} from "react-router-dom";
 import './index.scss'
+import HotArticle from "../../components/HotArticle/hotArticle"
+ 
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -13,41 +15,50 @@ class Home extends React.Component {
   }
 
   ArticleList() {
-    console.log(this)
-    axios.post('http://api.xuhaibing.io/v1/article/list').then(response => {
+    post('article/list').then(response => {
       this.setState({list: response});
     })
   }
 
-  componentDidMount() {
+  componentDidMount(prevProps, prevState, snapshot) {
+    // console.log(prevProps, prevState, snapshot)
     this.ArticleList()
   }
   render() {
 
     return (<div className="index-content">
-
       <div className="container">
-        {
-          this.state.list.map(row => {
-            return (<div className="article-list-item" key={row.id}>
 
-              <h2>
-                <Link to={'detail/' + row.href}>{row.title}</Link>
-              </h2>
-              <div className="desc" dangerouslySetInnerHTML={{
-                  __html: row.contents
-                }}></div>
-              <div className="tags-date">
-                <div className="tags">
-                  <span>{row.tags}</span>
-                </div>
-                <div className="date">{row.time}</div>
-              </div>
-            </div>)
-          })
-        }
+        <Row gutter={[16, 16]}>
+          <Col span={16}>
+            <div className="article-list">
+              {
+                this.state.list.map(item => {
+                  return (<div className="article-list-item" key={item.id}>
+
+                    <h2>
+                      <Link to={'detail/' + item.href}>{item.title}</Link>
+                    </h2>
+                    <div className="desc" dangerouslySetInnerHTML={{
+                        __html: item.contents
+                      }}></div>
+                    <div className="tags-date">
+                      <div className="tags">
+                        <span>{item.tags}</span>
+                      </div>
+                      <div className="date">{item.time}</div>
+                    </div>
+                  </div>)
+                })
+              }
+            </div>
+            <Pagination defaultCurrent={1} total={50}/>
+          </Col>
+          <Col span={8}>
+            <HotArticle></HotArticle>
+          </Col>
+        </Row>
       </div>
-      <Pagination defaultCurrent={1} total={50}/>
     </div>);
   }
 }

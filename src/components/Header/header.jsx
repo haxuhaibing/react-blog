@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col} from 'antd';
+// import {Row, Col} from 'antd';
 import './index.scss'
 import logo from "../../assets/images/logo.png"
 

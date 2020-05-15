@@ -1,15 +1,10 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch
-} from "react-router-dom";
+import { connect } from 'react-redux'
+import { addTodo } from '../../actions'
 import axios from '../../utils/axios';
 import {Tag} from 'antd';
 import './index.scss'
+ 
 class Detail extends React.Component {
   constructor(props) {
     super(props);
@@ -19,9 +14,9 @@ class Detail extends React.Component {
 
   }
 
-  getDetail() {
+  getDetail(prevProps, prevState, snapshot) {
 
- 
+    console.log(prevState)
     axios.post('http://api.xuhaibing.io/v1/article/detail', {href: this.props.match.params.id}).then(response => {
       this.setState({details: response});
     })
