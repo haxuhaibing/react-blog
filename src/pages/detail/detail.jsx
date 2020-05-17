@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { addTodo } from '../../actions'
+import { addTodo } from '../../store/actions'
 import axios from '../../utils/axios';
 import {Tag} from 'antd';
 import './index.scss'
- 
+
 class Detail extends React.Component {
   constructor(props) {
     super(props);

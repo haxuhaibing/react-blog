@@ -9,7 +9,7 @@
 }
 
 .article-list-item {
-  padding: 16px 0;
+  padding: 1rem 0;
   border-bottom: 1px solid #f4f4f4;
 
   h2 {
@@ -19,6 +19,7 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    margin-bottom: 1rem;
 
     a {
       color: #333;
@@ -44,11 +45,12 @@
   }
 
   &:last-child {
-    padding-bottom: 0;
     border-bottom: none;
   }
 
   .desc {
-    background: #f8f8f8;
+    pre {
+      background: #f8f8f8;
+    }
   }
 }

@@ -4,7 +4,7 @@ import {Pagination, Row, Col} from 'antd';
 import {Link} from "react-router-dom";
 import './index.scss'
 import HotArticle from "../../components/HotArticle/hotArticle"
- 
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +17,7 @@ class Home extends React.Component {
   ArticleList() {
     post('article/list').then(response => {
       this.setState({list: response});
+      store.dispatch(addTodo('Read the docs'))
     })
   }
 
@@ -29,8 +30,8 @@ class Home extends React.Component {
     return (<div className="index-content">
       <div className="container">
 
-        <Row gutter={[16, 16]}>
-          <Col span={16}>
+        <Row gutter={[0, 0]}>
+          <Col xs={24} md={16}>
             <div className="article-list">
               {
                 this.state.list.map(item => {
@@ -52,9 +53,12 @@ class Home extends React.Component {
                 })
               }
             </div>
-            <Pagination defaultCurrent={1} total={50}/>
+            <div className="mt16">
+              <Pagination defaultCurrent={1} total={50}/>
+            </div>
+
           </Col>
-          <Col span={8}>
+          <Col xs={24} md={8}>
             <HotArticle></HotArticle>
           </Col>
         </Row>
