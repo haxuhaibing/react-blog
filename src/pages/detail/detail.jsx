@@ -1,10 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { addTodo } from '../../store/actions'
+import {connect} from 'react-redux'
+import {addTodo} from '../../actions'
 import axios from '../../utils/axios';
-import {Tag} from 'antd';
-import './index.scss'
 
+import {post} from '../../utils/axios';
+import {Row, Col, Tag} from 'antd';
+import './index.scss'
+import HotArticle from "../../components/HotArticle/hotArticle"
 class Detail extends React.Component {
   constructor(props) {
     super(props);
@@ -15,9 +17,7 @@ class Detail extends React.Component {
   }
 
   getDetail(prevProps, prevState, snapshot) {
-
-    console.log(prevState)
-    axios.post('http://api.xuhaibing.io/v1/article/detail', {href: this.props.match.params.id}).then(response => {
+    post('article/detail', {href: this.props.match.params.id}).then(response => {
       this.setState({details: response});
     })
   }
@@ -27,23 +27,40 @@ class Detail extends React.Component {
 
   }
   render() {
+    return (<div className="container detail-container">
+      <div className="container">
+        <Row gutter={[16, 16]}>
+          <Col xs={24} md={16}>
+            <section className="detail-content v-model v-shadow">
+              <div className="detail-title">
+                <h1>{this.state.details.title}</h1>
+              </div>
+              <div className="detail-propety">
+                <Row >
+                  <Col>
+                    <div className="detail-tags">
+                      <Tag color="blue">{this.state.details.tags}</Tag>
+                    </div>
+                  </Col>
+                  <Col>
+                    <div className="detail-propety-publish">
+                      <span>发布于</span>
+                      <span>{this.state.details.time}</span>
+                    </div>
+                  </Col >
+                </Row>
+              </div>
+              <div className="detail-desc" dangerouslySetInnerHTML={{
+                   __html: this.state.details.contents
+                 }}></div>
+            </section>
 
-    return (<div>
-      <div className="detail-title">
-        <h1>{this.state.details.title}</h1>
+          </Col>
+          <Col xs={24} md={8}>
+            <HotArticle></HotArticle>
+          </Col>
+        </Row>
       </div>
-      <div className="detail-propety">
-        <div className="detail-tags">
-          <Tag color="blue">{this.state.details.tags}</Tag>
-        </div>
-        <div className="detail-propety-publish">
-          <span>发布于{this.state.details.time}</span>
-        </div>
-
-      </div>
-      <div className="detail-desc" dangerouslySetInnerHTML={{
-          __html: this.state.details.contents
-        }}></div>
     </div>);
   }
 }

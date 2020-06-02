@@ -9,22 +9,27 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: []
+      list: [],
+      page: 1,
+      total: 0
     }
 
   }
-
+  //获取文章列表
   ArticleList() {
-    post('article/list').then(response => {
-      this.setState({list: response});
-      store.dispatch(addTodo('Read the docs'))
+    let data = {
+      page: 1,
+      pageSize: 5
+    };
+    post('article/list', data).then(response => {
+      this.setState({list: response.list, total: response.total});
     })
   }
 
   componentDidMount(prevProps, prevState, snapshot) {
-    // console.log(prevProps, prevState, snapshot)
     this.ArticleList()
   }
+  
   render() {
 
     return (<div className="index-content">
@@ -54,7 +59,7 @@ class Home extends React.Component {
               }
             </div>
             <div className="mt16">
-              <Pagination defaultCurrent={1} total={50}/>
+              <Pagination defaultCurrent={this.state.page} total={this.state.total}/>
             </div>
 
           </Col>

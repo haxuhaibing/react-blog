@@ -1,4 +1,6 @@
- 
+.container {
+  padding: 0 16px;
+}
 .detail-content {
   margin-top: 16px;
 }
@@ -29,7 +31,7 @@
 
 .detail-tags {
   .ant-tag {
-    margin-right: 0;
+    margin-right: 8px;
   }
 }
 .detail-desc {
