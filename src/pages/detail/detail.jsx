@@ -1,8 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux'
-import {addTodo} from '../../actions'
-import axios from '../../utils/axios';
-
 import {post} from '../../utils/axios';
 import {Row, Col, Tag} from 'antd';
 import './index.scss'
@@ -24,12 +20,18 @@ class Detail extends React.Component {
 
   componentDidMount() {
     this.getDetail();
-
   }
+
+  componentWillUnmount( ){
+ 
+ 
+  }
+
+ 
   render() {
-    return (<div className="container detail-container">
+  return (<div className="container detail-container">
       <div className="container">
-        <Row gutter={[16, 16]}>
+        <Row gutter={[16, 0]}>
           <Col xs={24} md={16}>
             <section className="detail-content v-model v-shadow">
               <div className="detail-title">

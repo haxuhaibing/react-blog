@@ -1,7 +1,7 @@
 import React from 'react';
-import {post} from '../../utils/axios';
+import { post } from '../../utils/axios';
 import './index.scss'
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 class HotArticle extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +13,7 @@ class HotArticle extends React.Component {
 
   getHotArticle() {
     post("/article/hotList").then(response => {
-      this.setState({hotList: response});
+      this.setState({ hotList: response });
     })
   }
   componentDidMount() {
