@@ -1,7 +1,8 @@
 import React from "react";
-import { Modal, Button, Form, Input, Checkbox, Col, Row } from "antd";
+//  import { store } from "../../store";
+import { Modal, Button, Form, Input } from "antd";
 import {
-  InfoCircleOutlined,
+ 
   UserOutlined,
   LockOutlined,
 } from "@ant-design/icons";
@@ -25,21 +26,21 @@ class Login extends React.Component {
       password: "",
     };
   }
-  showModal = () => {
+  showModal =()=> {
     this.setState({
       visible: true,
     });
   };
 
   handleOk = (e) => {
-    console.log(e);
+ 
     this.setState({
       visible: false,
     });
   };
 
   handleCancel = (e) => {
-    console.log(e);
+ 
     this.setState({
       visible: false,
     });
@@ -58,7 +59,7 @@ class Login extends React.Component {
     });
   };
 
-  render() {
+  render(){
     function onFinish() {}
     function onFinishFailed() {}
     return (
@@ -110,6 +111,7 @@ class Login extends React.Component {
               >
                 确定
               </Button>
+    {/* <div>{store.value}</div> */}
             </Form.Item>
           </Form>
         </Modal>

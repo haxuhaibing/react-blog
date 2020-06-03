@@ -1,10 +1,9 @@
 import React from 'react';
-import { Menu, Dropdown, Avatar,Modal } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { Menu, Dropdown, Avatar  } from 'antd';
+ 
 import './index.scss'
 import logo from "../../assets/images/logo.png"
-
-import { Link } from "react-router-dom";
+ 
 const menu = (
   <Menu>
     <Menu.Item key="0">

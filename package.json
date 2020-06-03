@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "jshint": "^2.11.1",
     "redux-devtools": "^3.5.0"
   }
 }
