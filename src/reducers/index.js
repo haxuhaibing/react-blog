@@ -2,11 +2,13 @@
      combineReducers
  } from 'redux'
  const ininState = {
-     value: 'default'
+     userInfo: {}
  }
  const rootReducer = (state = ininState, action) => {
      switch (action.type) {
-         case "send_type":
+         case "send_action":
+             console.log('qq:',state, action);
+             
              return Object.assign({}, state, action);
          default:
              return state;

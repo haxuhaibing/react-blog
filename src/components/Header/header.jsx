@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Dropdown, Avatar  } from 'antd';
- 
+ import { connect } from "react-redux";
 import './index.scss'
 import logo from "../../assets/images/logo.png"
  
@@ -18,30 +18,26 @@ const menu = (
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLogin: true
-    }
-  
   };
 
   render() {
-    let isLoggedIn =this.state.isLogin;
-    function IsLogin(props) {
-      if (isLoggedIn) {
-        return (
-          <Dropdown overlay={menu}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            </a>
-          </Dropdown>
-        )
+    let avatar = this.props.userInfo.avatar;
+ let IsLogin = () => {
+   if (Object.keys(this.props.userInfo).length !== 0) {
+     return (
+       <Dropdown overlay={menu}>
+         <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+           <Avatar src={avatar} />
+         </a>
+       </Dropdown>
+     );
+   } else {
+     return (<div>登录</div>);
+   }
+ };
 
-      }
-      else {
-        return "登录"
-      }
  
-    }
+ 
 
    
     return (<div style={{
@@ -65,4 +61,19 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+ 
+//出发dispatch
+// const mapDisparchProps = (dispatch) => {
+//   return {
+//     sendAction: (data) => {
+//       dispatch(userInfoAction(data));
+//     },
+//   };
+// };
+//接收store
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.rootReducer.userInfo,
+  };
+};
+export default connect(mapStateToProps, null)(Header);

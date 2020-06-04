@@ -1,11 +1,10 @@
 import React from "react";
-//  import { store } from "../../store";
+import { connect } from "react-redux";
+import { userInfoAction } from "../../actions";
+import { getUserInfo } from "../../api/user";
+
 import { Modal, Button, Form, Input } from "antd";
-import {
- 
-  UserOutlined,
-  LockOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import "./index.scss";
 
 const layout = {
@@ -21,30 +20,17 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: true,
+      visible: false,
       username: "",
       password: "",
     };
   }
-  showModal =()=> {
+  showModal = () => {
     this.setState({
       visible: true,
     });
   };
 
-  handleOk = (e) => {
- 
-    this.setState({
-      visible: false,
-    });
-  };
-
-  handleCancel = (e) => {
- 
-    this.setState({
-      visible: false,
-    });
-  };
   //用户名
   onInputUsername = (e) => {
     this.setState({
@@ -59,15 +45,38 @@ class Login extends React.Component {
     });
   };
 
-  render(){
-    function onFinish() {}
+  render() {
+    let onFinish = () => {
+      
+      // getUserInfo({
+      //   username: this.state.username,
+      //   password: this.state.password,
+      // }).then((res) => {
+      //   console.log(res);
+      //   this.props.sendAction(res);
+      // });
+
+       
+      getUserInfo({
+        username: 'xuhaibing',
+        password: '123456',
+      }).then((res) => {
+        console.log(res);
+        this.props.sendAction(res);
+            this.setState({
+              visible: false
+            });
+      });
+ 
+    };
     function onFinishFailed() {}
+
     return (
       <div>
         <Modal
           title="登录"
           footer={null}
-          bodyStyle={{paddingBottom:'1px'}}
+          bodyStyle={{ paddingBottom: "1px" }}
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
@@ -102,16 +111,10 @@ class Login extends React.Component {
               />
             </Form.Item>
             <Form.Item>
-              <Button
-                block
-                size="large"
-                
-                type="primary"
-                htmlType="submit"
-              >
+              <Button block size="large" type="primary" htmlType="submit">
                 确定
               </Button>
-    {/* <div>{store.value}</div> */}
+              {/* <div>{store.value}</div> */}
             </Form.Item>
           </Form>
         </Modal>
@@ -119,4 +122,20 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+
+//出发dispatch
+const mapDisparchProps = (dispatch) => {
+  return {
+    sendAction: (data) => {
+      dispatch(userInfoAction(data));
+    },
+  };
+};
+//接收store
+const mapStateToProps = (state) => {
+  console.log("state", state);
+  return {
+    userInfo: state.rootReducer.userInfo,
+  };
+};
+export default connect(mapStateToProps, mapDisparchProps)(Login);

@@ -1,4 +1,5 @@
 import React from "react";
+import { connect} from "react-redux";
 import { post } from "../../utils/axios";
 import { Pagination, Row, Col } from "antd";
 import { Link } from "react-router-dom";
@@ -76,5 +77,7 @@ class Home extends React.Component {
     );
   }
 }
+
+ 
 
 export default Home;
